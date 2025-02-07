@@ -1,0 +1,53 @@
+.pokemonCard {
+  flex-basis: 20%;
+  height: 300px;
+  width: 300px;
+  padding: 10px;
+  margin-top: 26px;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+  border-radius: 10px; /* Optional for smooth edges */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* .pokemonCard:hover {
+  box-shadow: 0px 0px 20px rgba(255, 100, 0, 0.7),
+    0px 0px 40px rgba(255, 50, 0, 0.5), 0px 0px 60px rgba(255, 0, 0, 0.3);
+} */
+
+.pokemonName {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+.pokemonImage {
+  height: 200px;
+  max-height: 80%;
+  max-width: 210px;
+}
+
+.pokemonCard:hover {
+  animation: fireGlow 1.5s infinite alternate ease-in-out;
+  transform: scale(1.05);
+}
+
+@keyframes fireGlow {
+  0% {
+    box-shadow: 0px 0px 15px rgba(255, 100, 0, 0.8),
+      0px 0px 30px rgba(255, 50, 0, 0.6), 0px 0px 45px rgba(255, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0px 0px 25px rgba(255, 150, 50, 0.9),
+      0px 0px 50px rgba(255, 75, 25, 0.7), 0px 0px 70px rgba(255, 25, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0px 0px 15px rgba(255, 100, 0, 0.8),
+      0px 0px 30px rgba(255, 50, 0, 0.6), 0px 0px 45px rgba(255, 0, 0, 0.4);
+  }
+}

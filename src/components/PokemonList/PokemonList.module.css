@@ -21,6 +21,199 @@
   text-align: center;
 }
 
-.PokemonListWrapper h2 {
-  font-size: 34px;
+.pokemonCardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 40px;
+}
+
+/* Fire Button */
+.fireButton {
+  background: linear-gradient(45deg, #ff4500, #ff8c00);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.fireButton:hover {
+  box-shadow: 0px 0px 20px rgba(255, 100, 0, 0.7),
+    0px 0px 40px rgba(255, 50, 0, 0.5), 0px 0px 60px rgba(255, 0, 0, 0.3);
+  transform: scale(1.1);
+}
+
+/* Fire Flicker Effect */
+@keyframes fireGlow {
+  0% {
+    box-shadow: 0px 0px 10px rgba(255, 100, 0, 0.7),
+      0px 0px 20px rgba(255, 50, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0px 0px 20px rgba(255, 150, 50, 0.9),
+      0px 0px 40px rgba(255, 75, 25, 0.7);
+  }
+  100% {
+    box-shadow: 0px 0px 10px rgba(255, 100, 0, 0.7),
+      0px 0px 20px rgba(255, 50, 0, 0.5);
+  }
+}
+
+.fireButton:hover {
+  animation: fireGlow 1.5s infinite alternate ease-in-out;
+}
+
+/* aurora Button */
+.auroraButton {
+  background: linear-gradient(45deg, #4facfe, #00f2fe);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.auroraButton:hover {
+  box-shadow: 0px 0px 15px rgba(79, 172, 254, 0.7),
+    0px 0px 30px rgba(0, 242, 254, 0.5), 0px 0px 50px rgba(0, 191, 255, 0.3);
+  transform: scale(1.1);
+}
+
+@keyframes auroraGlow {
+  0% {
+    box-shadow: 0px 0px 10px rgba(79, 172, 254, 0.7),
+      0px 0px 20px rgba(0, 242, 254, 0.5);
+  }
+  50% {
+    box-shadow: 0px 0px 20px rgba(79, 172, 254, 0.9),
+      0px 0px 40px rgba(0, 242, 254, 0.7);
+  }
+  100% {
+    box-shadow: 0px 0px 10px rgba(79, 172, 254, 0.7),
+      0px 0px 20px rgba(0, 242, 254, 0.5);
+  }
+}
+
+.auroraButton:hover:not(:disabled) {
+  animation: auroraGlow 1.5s infinite alternate ease-in-out;
+}
+
+.auroraButton:disabled {
+  background: gray;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* 
+.skyButton {
+  background: linear-gradient(45deg, #1e90ff, #00bfff);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.skyButton:hover {
+  box-shadow: 0px 0px 20px rgba(30, 144, 255, 0.7),
+    0px 0px 40px rgba(0, 191, 255, 0.5), 0px 0px 60px rgba(135, 206, 250, 0.3);
+  transform: scale(1.1);
+}
+
+@keyframes skyGlow {
+  0% {
+    box-shadow: 0px 0px 10px rgba(30, 144, 255, 0.7),
+      0px 0px 20px rgba(0, 191, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0px 0px 20px rgba(135, 206, 250, 0.9),
+      0px 0px 40px rgba(0, 191, 255, 0.7);
+  }
+  100% {
+    box-shadow: 0px 0px 10px rgba(30, 144, 255, 0.7),
+      0px 0px 20px rgba(0, 191, 255, 0.5);
+  }
+}
+
+.skyButton:hover {
+  animation: skyGlow 1.5s infinite alternate ease-in-out;
+}
+
+
+.mixedGlowButton {
+  background: linear-gradient(45deg, #ff4500, #ff8c00, #4facfe, #00f2fe);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.mixedGlowButton:hover {
+  box-shadow: 0px 0px 20px rgba(255, 69, 0, 0.8),
+    0px 0px 40px rgba(255, 140, 0, 0.6), 0px 0px 60px rgba(0, 242, 254, 0.5);
+  transform: scale(1.1);
+}
+
+@keyframes mixedGlow {
+  0% {
+    box-shadow: 0px 0px 10px rgba(255, 69, 0, 0.8),
+      0px 0px 20px rgba(255, 140, 0, 0.6);
+  }
+  50% {
+    box-shadow: 0px 0px 20px rgba(255, 165, 0, 0.9),
+      0px 0px 40px rgba(0, 242, 254, 0.7);
+  }
+  100% {
+    box-shadow: 0px 0px 10px rgba(255, 69, 0, 0.8),
+      0px 0px 20px rgba(255, 140, 0, 0.6);
+  }
+}
+
+.mixedGlowButton:hover {
+  animation: mixedGlow 1.5s infinite alternate ease-in-out;
+}
+
+
+@keyframes fireFlicker {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.mixedGlowButton:hover {
+  animation: mixedGlow 1.5s infinite alternate ease-in-out,
+    fireFlicker 0.5s infinite alternate ease-in-out;
+}
+
+*/

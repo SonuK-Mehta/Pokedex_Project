@@ -8,15 +8,16 @@ function PokemonList() {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [apiUrl, setApiUrl] = useState("https://pokeapi.co/api/v2/pokemon");
+  const [nextUrl, setNextUrl] = useState("");
+  const [prevUrl, setPrevUrl] = useState("");
 
-  async function downloadPokemons() {
+  async function downloadPokemons(apiUrl) {
     setError(""); // Reset error before fetching data
     try {
-      // const response = await axios.get(
-      //   "https://pokeapi.co/api/v2/pokemon?limit=10"
-      // ); // Fetch 10 Pokémon
-
-      const response = await axios.get("https://pokeapi.co/api/v2/pokemon");
+      const response = await axios.get(apiUrl);
+      setNextUrl(response.data.next); // Next page URL
+      setPrevUrl(response.data.previous); // Previous page URL
 
       // Fetch each Pokémon's details (for images)
       const detailedPokemons = await Promise.all(
@@ -24,25 +25,25 @@ function PokemonList() {
           const res = await axios.get(pokemon.url);
           return {
             id: res.data.id,
-            name: res.data.name,
-            image: res.data.sprites.front_default,
+            name: res.data.name.toUpperCase(),
+            image: res.data.sprites.other.dream_world.front_default,
             types: res.data.types,
           };
         })
       );
 
-      console.log(detailedPokemons);
+      // console.log(detailedPokemons);
       setPokemonList(detailedPokemons);
     } catch (err) {
-      setError(`⚠️ Failed to fetch Pokémon. Please try again!`);
+      setError("⚠️ Failed to fetch Pokémon. Please try again!");
     } finally {
       setLoading(false); // Stop the loader after request
     }
   }
 
   useEffect(() => {
-    downloadPokemons();
-  }, []);
+    downloadPokemons(apiUrl);
+  }, [apiUrl]);
 
   if (loading) {
     return (
@@ -62,11 +63,38 @@ function PokemonList() {
 
   return (
     <div className={styles.PokemonListWrapper}>
-      <h2>List of Pokémon</h2>
-      {pokemonList &&
-        pokemonList.map((p) => (
-          <Pokemon name={p.name} image={p.image} key={p.id} />
-        ))}
+      {pokemonList && (
+        <>
+          <div className={styles.pokemonCardWrapper}>
+            {pokemonList.map((p) => (
+              <Pokemon name={p.name} image={p.image} key={p.id} />
+            ))}
+          </div>
+          <div className={styles.controls}>
+            <button
+              className={styles.auroraButton}
+              onClick={() => {
+                setLoading(true); // 🛠️ Start loader before making the API call
+                setApiUrl(prevUrl);
+              }}
+              disabled={!prevUrl}
+            >
+              &larr; Prev
+            </button>
+
+            <button
+              className={styles.auroraButton}
+              onClick={() => {
+                setLoading(true);
+                setApiUrl(nextUrl);
+              }}
+              disabled={!nextUrl}
+            >
+              Next &rarr;
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
