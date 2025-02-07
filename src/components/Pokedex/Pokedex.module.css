@@ -1,0 +1,8 @@
+.pokedexWrapper {
+  text-align: center;
+}
+
+.pokedexWrapper h1 {
+  font-size: 42px;
+  letter-spacing: 8px;
+}
